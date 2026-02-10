@@ -2,13 +2,13 @@ import subprocess
 import sys
 import os
 
-def run_triangle_test(a, b, c):
+def run_triangle_test(parts):
     try:
         script_dir = os.path.dirname(os.path.abspath(__file__))
         triangle_path = os.path.join(script_dir, '../triangle_app/triangle_app.py')
 
         result = subprocess.run(
-            [sys.executable, triangle_path, str(a), str(b), str(c)],
+            [sys.executable, triangle_path, parts[0], parts[1], parts[2]],
             capture_output=True,
             text=True,
             timeout=5
@@ -17,10 +17,10 @@ def run_triangle_test(a, b, c):
         return result.stdout.strip()
 
     except subprocess.TimeoutExpired:
-        return "unknown error"
+        return "unknown_error"
     except Exception as e:
         print(f"Error running test: {e}")
-        return "unknown error"
+        return "unknown_error"
 
 
 def run_tests_from_file(input_file, output_file):
@@ -48,16 +48,12 @@ def run_tests_from_file(input_file, output_file):
             print(f"Processing test {test_count}: {line}")
 
             parts = line.split()
-            if len(parts) < 4:
-                print(f"Warning: line {test_count} has incorrect format")
-                results.append("error")
-                continue
 
             try:
-                a, b, c = parts[0], parts[1], parts[2]
-                expected = ' '.join(parts[3:])
 
-                actual = run_triangle_test(a, b, c)
+                expected = parts[-1]
+
+                actual = run_triangle_test(parts[:-1])
 
                 if actual.lower() == expected.lower():
                     results.append("success")

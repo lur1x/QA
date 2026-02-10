@@ -6,8 +6,8 @@ class TriangleType(Enum):
     EQUILATERAL = "equilateral"
     ISOSCELES = "isosceles"
     SCALENE = "scalene"
-    NOT_A_TRIANGLE = "not a triangle"
-    UNKNOWN_ERROR = "unknown error"
+    NOT_A_TRIANGLE = "not_a_triangle"
+    UNKNOWN_ERROR = "unknown_error"
 
 def triangle_type(a, b, c):
     try:
@@ -79,8 +79,15 @@ class Triangle:
         return self.get_type()
 
 
-def run_triangle_classifier(a_str: str, b_str: str, c_str: str) -> TriangleType:
-    triangle = Triangle.from_strings(a_str, b_str, c_str)
+def run_triangle_classifier() -> TriangleType:
+
+    if len(sys.argv) != 4:
+        return TriangleType.UNKNOWN_ERROR
+
+    side1, side2, side3 = sys.argv[1], sys.argv[2], sys.argv[3]
+
+    triangle = Triangle.from_strings( side1, side2, side3)
+
     if triangle is None:
         return TriangleType.NOT_A_TRIANGLE
 
@@ -91,15 +98,8 @@ def run_triangle_classifier(a_str: str, b_str: str, c_str: str) -> TriangleType:
 
 
 def main() -> int:
-    if len(sys.argv) != 4:
-        print("Usage: python triangle_app.py <side1> <side2> <side3>")
-        print("Example: python triangle_app.py 3 4 5")
-        return 1
-
-    side1, side2, side3 = sys.argv[1], sys.argv[2], sys.argv[3]
-
-    result = run_triangle_classifier(side1, side2, side3)
-    print(result.value)
+    result_type = run_triangle_classifier()
+    print(result_type.value)
 
     return 0
 
