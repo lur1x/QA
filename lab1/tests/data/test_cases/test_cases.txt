@@ -1,0 +1,41 @@
+1 1 1 equilateral
+2 2 3 isosceles
+3 4 5 scalene
+
+1.0 1.0 1.0 equilateral
+0.5 0.5 0.5 equilateral
+
+5 5 8 isosceles
+7 10 7 isosceles
+6.5 6.5 9 isosceles
+
+2 3 4 scalene
+7 24 25 scalene
+6 8 10 scalene
+
+1 2 3 not a triangle
+5 1 1 not a triangle
+10 2 3 not a triangle
+1 10 2 not a triangle
+
+0 4 5 not a triangle
+-1 2 3 not a triangle
+3 4 -5 not a triangle
+0 0 0 not a triangle
+
+100 100 100 equilateral
+100 100 150 isosceles
+100 101 102 scalene
+
+0.3 0.4 0.5 scalene
+2.5 2.5 3.5 isosceles
+0.7 0.7 0.7 equilateral
+
+abc 2 3 not a triangle
+1 2 abc not a triangle
+
+1.0000001 1.0000001 1.0000001 equilateral
+2.0 2.0 2.00000001 isosceles
+
+1 2 3 not a triangle
+5 12 17 not a triangle
