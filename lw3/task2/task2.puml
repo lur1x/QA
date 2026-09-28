@@ -1,0 +1,25 @@
+@startuml task2
+left to right direction
+
+state "Ожидание (двери закрыты)" as Idle
+state "Двери открыты" as Open
+state "Движение вверх" as Up
+state "Движение вниз" as Down
+
+[*] --> Idle
+
+Idle --> Open : вызов с текущего этажа
+Idle --> Up : вызов с этажа выше
+Idle --> Down : вызов с этажа ниже
+
+Up --> Open : достигнут нужный этаж
+Down --> Open : достигнут нужный этаж
+
+Open --> Idle : двери закрыты, вызовов нет
+Open --> Up : двери закрыты, есть вызов выше 
+Open --> Down : двери закрыты, есть вызов ниже
+
+Open --> Open : удержание кнопки "Открыть двери"
+Idle --> Idle : нет вызовов
+
+@enduml
